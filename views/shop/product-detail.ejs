@@ -1,0 +1,24 @@
+<%-include('../EJS/head.ejs')%>
+
+  <%-include('../EJS/navigation.ejs')%>
+    <main class="centered">
+      <h1>
+        <%=product.title%>
+      </h1>
+      <hr>
+      <div class="imag">
+        <img src="/<%= product.imagurl  %>" alt="<%=product.title%>">
+
+      </div>
+      <h2>
+        <%=product.price%>
+      </h2>
+      <p>
+        <%=product.description%>
+      </p>
+      <% if (isAuthenticated) { %>
+        <%-include('../EJS/cart.ejs')%>
+          <% } %>
+    </main>
+
+    <%-include('../EJS/end.ejs')%>

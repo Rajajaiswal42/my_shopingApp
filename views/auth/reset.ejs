@@ -1,0 +1,25 @@
+<%- include('../EJS/head.ejs') %>
+    <link rel="stylesheet" href="/public/css/forms.css">
+    <link rel="stylesheet" href="/public/css/auth.css">
+
+    </head>
+
+    <body>
+        <%- include('../EJS/navigation.ejs') %>
+
+            <main>
+                <% if(flash){%>
+                <div class="user-message user-message--error"><%=flash%></div>
+                <% }%>
+                <form class="login-form" action="/reset" method="POST">
+                    <div class="form-control">
+                        <label for="email">email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                  
+
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+                    <button class="btn" type="submit">reset</button>
+                </form>
+            </main>
+            <%- include('../EJS/end.ejs') %>

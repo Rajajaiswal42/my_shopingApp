@@ -1,0 +1,46 @@
+<%- include('../EJS/head.ejs') %>
+    <link rel="stylesheet" href="/public/css/forms.css">
+    <link rel="stylesheet" href="/public/css/auth.css">
+
+    </head>
+
+    <body>
+        <%- include('../EJS/navigation.ejs') %>
+
+            <main>
+                <% if(flash){%>
+                    <div class="user-message user-message--error"><%=flash%></div>
+                    <% }%>
+                <form class="login-form" action="/signup" method="POST" novalidate>
+                    <div class="form-control">
+                        <label for="email">email</label>
+                        <input
+                               class="<%=validationError.find(e => e.param=== 'email') ? 'invalid' : '' %>"
+                               type="email"
+                               name="email"
+                               id="email" 
+                               value="<%=oldInput.email%>" >
+                               
+                    </div>
+                    <div class="form-control">
+                        <label for="password">password</label>
+                        <input
+                         class="<%=validationError.find(e=>{e.param==='password'}) ? 'invalid':'' %>"
+                          type="password"
+                          name="password" 
+                          id="password" 
+                          value="<%=oldInput.password%>">
+                    </div>
+                    <div class="form-control">
+                        <label for="confirmPassword"> confirm password</label>
+                        <input
+                        class="<%=validationError.find(e=>{e.param==='confirmPassword'}) ? 'invalid':'' %>"
+                        type="password" name="confirmPassword" id="confirmPassword" value="<%=oldInput.confirmPassword%>">
+                    </div>
+
+
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+                    <button class="btn" type="submit">signup</button>
+                </form>
+            </main>
+            <%- include('../EJS/end.ejs') %>
